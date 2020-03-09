@@ -1,1 +1,1 @@
-# LinearRegressionProject
+#Machine Learning Projects
