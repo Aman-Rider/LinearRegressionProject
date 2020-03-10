@@ -1,0 +1,103 @@
+Machine Learning
+
+1) Performance evalutaion 
+	FOR CLASSIFICATION PROBLEM
+	a) Accuracy --> total correct/total prediction
+	b) Recall --> TP/(TP+FN)
+	c) Precision --> TP/(TP+FP)
+	d) F1 Score --> 2(Precision*Recall)/(Precision+Recall)
+	
+	FOR REGRESSION PROBLEM
+	a) Mean Absolute Error
+	b) Mean Squared Error
+	c) Root Mean Squared Error
+
+Train-Test Split	
+	from sklearn.model_selection import train_test_split
+	X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4, random_state=101)
+
+Linear Regression
+	from sklearn.linear_model import LinearRegression
+	lm = LinearRegression()
+	lm.fit(X_train,y_train)
+	predictions = lm.predict(X_test)
+
+Model Evaluation
+	coeff_df = pd.DataFrame(lm.coef_,X.columns,columns=['Coefficient'])
+	lm.intercept_
+	sns.distplot((y_test-predictions),bins=50);
+
+	from sklearn import metrics
+	print('MAE:', metrics.mean_absolute_error(y_test, predictions))
+	print('MSE:', metrics.mean_squared_error(y_test, predictions))
+	print('RMSE:', np.sqrt(metrics.mean_squared_error(y_test, predictions)))
+	
+Logistic Regression--A method for classification
+	from sklearn.linear_model import LogisticRegression
+	lm = LogisticRegression()
+	lm.fit(X_train,y_train)
+	predictions = lm.predict(X_test)
+
+KNN(K-Nearest Neighbors)
+	from sklearn.neighbors import KNeighborsClassifier
+	knn = KNeighborsClassifier(n_neighbors=1)
+	knn.fit(X_train,y_train)
+
+Model Evaluation:
+from sklearn.metrics import classification_report, confusion_matrix
+a) Confusion Matrix
+	
+	confusion_matrix(y_test,predictions)
+		Predicted | Predicted 
+			No	  |		Yes
+  ACTUAL  |		  |
+	No	  |	TN	  |    FP
+__________|_______|__________
+  ACTUAL  |		  |
+   Yes	  |	FN	  |    TP
+
+2) Classification Report
+	classification_report(y_test,predictions)
+	
+
+Decision Tree and Random Forest
+a) Decision Tree:
+	from sklearn.tree import DecisionTreeClassifier
+	model = DecisionTreeClassifier()
+	model.fit(X_train,y_train)
+
+b) Random Forest:
+	from sklearn.ensemble import RandomForestClassifier
+	rfc = RandomForestClassifier(n_estimators=10)
+	rfc.fit(X_train,y_train)
+
+Support Vector Machine(SVM)
+from sklearn.svm import SVC
+model = SVC()
+model.fit(x_train,y_train)
+predictions = model.predict(x_test)
+
+
+K-Means Clustering(Unsupervised)
+	from sklearn.cluster import KMeans
+	model = KMeans(n_clusters=4)
+	model.fit(data[0])
+	model.cluster_centers_
+
+Grid Search
+Grid-searching is the process of scanning the data to configure optimal parameters for a given model. 
+	from sklearn.model_selection import GridSearchCV
+	param_grid={'C':[0.1,1,10,100,1000],'gamma':[1,.1,.01,.001,.0001]}
+	grid=GridSearchCV(SVC(),param_grid,verbose=3)
+	grid.fit(x_train,y_train)
+	grid.best_params_
+	grid.best_estimator_
+	grid_predict = grid.predict(x_test)
+	
+PCA(Principle Component Analysis -- Dimensionality Reduction)
+	from sklearn.decomposition import PCA
+	pca = PCA(n_components=2)
+	pca.fit(scaled_data)
+	x_pca = pca.transform(scaled_data)
+	or
+	new_x=pca.fit_transform(scaled_data)

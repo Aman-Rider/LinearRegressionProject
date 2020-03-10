@@ -1,0 +1,65 @@
+Pandas 
+
+Data Input:
+	Sources :
+		a CSV--> 
+			Read --df = pd.read_csv("test.csv")
+			write -- df.to_csv("test.csv",index=False)
+		
+		b Excel
+			Read --df = pd.read_excel("test.xlsx",sheetname="sheet1")
+			write -- df.to_excel("test.xlsx",sheetname="new_Sheet")
+		c HTML
+			Read --df = pd.read_html('http://www.fdic.gov/bank/individual/failed/banklist.html')
+			
+		d SQL
+			Read --engine = create_engine('sqlite:///:memory:')
+					sql_df = pd.read_sql('data',con=engine)
+					df.to_sql('data', engine)
+Series(similar to numpy array)
+a) pandas.Series(data=None, index=None, dtype=None, name=None, copy=False, fastpath=False)
+	pd.Series(data = my_data,index=Label)
+	we can pass, array,list and also dictionary(keys as keys and values as data)
+
+DataFrames
+np.random.seed(101)
+pandas.DataFrame(data=None, index=None, columns=None, dtype=None, copy=False)
+
+e.g. -> df = pd.DataFrames(randn(5,4),['A','B','C','D','E'],['W','x','Y','Z'])
+
+missing Data
+a) Droping --> df.dropna() --> drop any rows with null along columns set axis = 1
+	to set threhold to drop a rows if threhold is crossed set "thresh = x"
+	
+b) fill missing values
+	df.fillna(value="xyz")-->filling with a value
+	df.fillna(value-df['x'].mean()) --> filling with mean of a column X
+
+GroupBy -->  group together rows based of of a column and perform aggregate function
+df.groupby(by=None, axis=0, level=None, as_index=True, sort=True, group_keys=True, squeeze=False, **kwargs)
+
+Merging, Joining, Concatinating
+a) Concatinating -->  basically glues together DataFrames. Keep in mind that dimensions should match along the axis you are concatenating on. 
+		pd.concat([df1,df2,df3,...])
+		default axis = 0 i.e. concat by Row axis =1 concat by column
+
+b) Merging -->The merge function allows you to merge DataFrames together using a similar logic as merging SQL Tables together.  
+		pd.merge(left_DF,right_DF,how='inner',on=['Column_names',..])
+		how can be [inner,outer,left,right
+
+c) Joining --> Joining is a convenient method for combining the columns of two potentially differently-indexed DataFrames into a single result DataFrame.
+	df_1.join(df_2 , on=None/column, how='left', lsuffix='', rsuffix='', sort=False)
+	
+	
+Pandas Operations
+1) len(df['col'])
+2) df['col'].unique() list of unique items
+3) df['col'].nunique() number of unique items
+4) df['col'].values
+5) df['col'].value_counts() count of each item occurance
+6) applying some functions like lambda expr or predefined fxn --> df['col3'].apply(xyz_func)  ,, df['col'].apply(len) ,, df['col'].apply(lambda x: x*2)
+7) Remove coll --> df.drop('col',axis=1,inplace = True)
+8) Sorting df.sort_values(by='col2')
+9) df.isnull()
+10) df.dropna()
+11) PIVOT TABLE -->df.pivot_table(values='D',index=['A', 'B'],columns=['C'])

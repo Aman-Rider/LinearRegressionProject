@@ -1,0 +1,55 @@
+Numpy Arrays
+1) np.arange(start,stop,step) -->
+	e.g. np.arange(0,10)--> array([0,1,2,3,4,5,6,7,8,9])
+
+2) np.zeros()
+	a) 1D --> np.zeros(n)
+	b) 2D --> np.zeros((n,m))
+
+3) np.ones()
+	a) 1D --> np.ones(n)
+	b) 2D --> np.ones((n,m))
+
+4) np.linspace(start,stop,space) -- dividing range into evenly space points
+	e.g. --> np.linspace(0,2,5) 
+
+5) np.eye(n) --> identity matrix
+	a square matrix in which all the elements of the principal diagonal are ones and all other elements are zeros. 
+	The effect of multiplying a given matrix by an identity matrix is to leave the given matrix unchanged.
+
+6) np.random.rand() --> Create an array of the given shape and populate it with random samples from a uniform distribution over [0, 1).
+	e.g np.random.rand(n),np.random.rand(n,m)
+
+7) np.random.randn() -->Return a sample (or samples) from the “standard normal” distribution.  
+	e.g np.random.randn(n),np.random.randn(n,m)
+	
+8) numpy.random.randint(low, high=None, size=None, dtype='l') ->Return random integers from low (inclusive) to high (exclusive). 
+
+9) arr.reshape(n*m) -->reshape to any shape but N*m must be eq to element in array
+
+10) arr.max() , arr.min() --> get max and min value from array
+
+11) arr.argmax() , arr.argmin() --> get index value of max and min
+
+12) arr.shape --> get shape of array
+
+13) arr.dtype --> data type of array
+
+
+Numpy Indexing and Selection
+
+1) arr[n] --> value from index 
+2) arr[n:m] --> slicing all same as list 
+3) arr_copy = arr.copy() --> deep copy not just reference 
+4) conditional selection 
+	a) arr[arr>5]
+
+Numpy Operations
+1) Maths Ops array --> scaler
+	a) arr1 + arr2
+	b) arr1 - arr2
+	c) arr1 * arr2 --> scaler 
+	d) arr1 / arr2
+	e) arr1 ** n -->exponents
+	f) np.sqrt(arr)
+	g) np.sin(arr)

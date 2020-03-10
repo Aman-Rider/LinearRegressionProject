@@ -1,0 +1,6 @@
+Matplotlib
+
+plt.subplot(1,2,1) #(row,column,fig_num)
+plt.plot(x,y)
+
+Object Oriented Method in Matplotlib

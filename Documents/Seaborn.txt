@@ -1,0 +1,51 @@
+Seaborn
+import seaborn as sns
+%matplotlib inline
+
+tip = sns.load_dataset('tips')
+tip.head()
+
+DISTRIBUTION PLOTS
+1) Distplot --> sns.distplot(tip['total_bill'],bins=20,kde=False)
+2) JointPlot --> sns.jointplot(x='total_bill',y='tip',data=tip)
+	sns.jointplot(x='total_bill',y='tip',data=tip,kind='kde')#kind can be reg,kde,hex,
+3) Pairplot --> sns.pairplot(tip,hue='smoker')#Hue for non integer columns
+4) Rugplot --> sns.rugplot(tip['total_bill'])
+
+Categorical Plots (categorical columns)
+
+1) Barplot --> 
+	import numpy as np
+	sns.barplot(x='sex',y='total_bill',data=tip,estimator=np.std)
+2) Countplot --> 
+	sns.countplot(x='sex',data=tip)
+3) Boxplot --> 
+	sns.boxplot(x='day',y='total_bill',data=tip)
+	sns.boxplot(x='day',y='total_bill',data=tip,hue='smoker')
+4) Violinplot -->
+	sns.violinplot(x='day',y='total_bill',data=tip,)
+5) Stripplot --> 
+	sns.stripplot(x='day',y='total_bill',data=tip,jitter=True,hue='sex',dodge=True)
+6) Swarmplot --> sns.swarmplot(x='day',y='total_bill',data=tip)
+7) Factorplot --> sns.factorplot(x='day',y='total_bill',data = tip,kind = 'bar')
+
+Matrix Plot
+
+flight = sns.load_dataset('flights')
+flight.head()
+flights.pivot_table(values='passengers',index='month',columns='year')
+
+tc = tip.corr()
+sns.heatmap(tc)
+
+fc =flight.pivot_table(values='passengers',index='month',columns='year')
+sns.heatmap(fc)
+
+
+Grid
+
+Regression Plot
+1) LmPlot -->sns.lmplot(x='total_bill',y='tip',data=tip)
+	sns.lmplot(x='total_bill',y='tip',data=tip,col='sex',row='time')
+
+ 
